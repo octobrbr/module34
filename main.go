@@ -27,6 +27,7 @@ func main() {
 	defer fOut.Close()
 	writer := bufio.NewWriter(fOut)
 
+	//fIn, err := ioutil.ReadFile(fileIn)
 	fIn, err := os.ReadFile(fileIn)
 	if err != nil {
 		panic(err)
@@ -35,7 +36,7 @@ func main() {
 	re := regexp.MustCompile(`([0-9]+)([\+\-\\\*])+([0-9]+)(\=)`)
 
 	submatches := re.FindAllStringSubmatch(string(fIn), -1)
-	
+
 	writer.Flush()
 	for _, v := range submatches {
 		switch v[2] {
